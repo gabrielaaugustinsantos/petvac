@@ -1,134 +1,258 @@
+"""
+Gerenciador de estilos e temas do PetVac.
+Aplica CSS global e configurações de tema.
+"""
 import streamlit as st
+from backend.design_system import GLOBAL_CSS, COLORS
+
 
 def set_css():
-    st.markdown("""
-        <style>
-            /* Fundo principal */
-            .stApp {
-                background-color: #FAFAFA; /* Cinza claro */
-                font-family: 'Arial', sans-serif;
-                color: #2A2E5F; /* Azul escuro p textos */
-            }
-
-            /* Cabeçalhos */
-            h1, h2, h3 {
-                color: #2A2E5F;
-                font-weight: bold;
-            }
-
-            /* Inputs e Textarea */
-            .stTextInput > div > div > input,
-            .stTextArea > div > div > textarea,
-            .stNumberInput input,
-            .stDateInput input {
-                background-color: #FFFFFF; /* Fundo branco */
-                border: 2px solid #A0B3A8; /* Verde */
-                border-radius: 10px;
-                padding: 10px;
-                color: #2A2E5F; /* Texto dentro do campo */
-            }
-
-            /* Labels dos inputs */
-            label {
-                color: #000000 !important;
-                font-weight: 600;
-            }
-
-                        /* === Sidebar === */
-            section[data-testid="stSidebar"] {
-                background-color: #ccefee; /* Turquesa */
-                padding-top: 20px;
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            /* Título do usuário (texto acima do botão sair) */
-            section[data-testid="stSidebar"] .st-emotion-cache-10trblm {
-                font-weight: 700 !important;
-                font-size: 18px !important;
-                color: #1E3A5F !important; /* Azul mais forte */
-            }
-
-            /* Links da sidebar (páginas) */
-            section[data-testid="stSidebar"] a {
-                font-weight: 700 !important;     /* MAIS GROSSO */
-                font-size: 16px !important;      /* Maior */
-                color: #1E3A5F !important;        /* Azul escuro elegante */
-                padding: 8px 12px !important;
-                border-radius: 6px;
-            }
-
-            /* Hover */
-            section[data-testid="stSidebar"] a:hover {
-                background-color: #b6e4e2 !important; /* Turquesa mais forte */
-                color: #10324b !important;
-            }
-
-            /* Página selecionada */
-            section[data-testid="stSidebar"] .st-emotion-cache-1v0mbdj a {
-                background-color: #33C1C1 !important; /* Turquesa destaque */
-                color: white !important;
-                font-weight: 800 !important;
-                border-radius: 6px;
-            }
-
-
-            /* Links da sidebar */
-            section[data-testid="stSidebar"] a {
-                color: #2A2E5F !important;
-                font-weight: 500;
-            }
-
-            section[data-testid="stSidebar"] a:hover {
-                background-color: #C1D3C1 !important;
-                border-radius: 6px;
-                color: #1E3A5F !important;
-            }
-
-            /* === Header === */
-            header[data-testid="stHeader"] {
-                background-color: #2A2E5F; /* Azul escuro */
-                color: white;
-                transition: background-color 0.3s ease;
-            }
-
-            /* === Botões principais === */
-            .stButton button {
-                background-color: #D1747B; /* Rosa */
-                color: white;
-                font-weight: bold;
-                border-radius: 10px;
-                padding: 10px 22px;
-                border: none;
-                transition: 0.3s;
-            }
-
-            .stButton button:hover {
-                background-color: #33C1C1; /* Turquesa */
-                transform: scale(1.05);
-            }
-
-            /* Caixas de formulário */
-            .form-box {
-                background-color: #D1747B; /* Rosa */
-                color: white;
-                padding: 20px;
-                border-radius: 12px;
-                box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
-                margin-bottom: 20px;
-            }
-
-            /* Divisores */
-            hr {
-                border: 1px solid #D1747B;
-            }
-                
-            /* notificações */
-           div[role="alert"] *, div[role="status"] *, div[data-testid="stAlert"] *, div[data-testid="stNotification"] * {
-                color: inherit !important;
-                background: transparent !important;
-                text-shadow: none !important;
-            }
-
-        </style>
+    """
+    Aplica o CSS global e configurações de tema da aplicação.
+    Deve ser chamado no início de cada página.
+    """
+    # Aplicar CSS global
+    st.markdown(GLOBAL_CSS, unsafe_allow_html=True)
+    
+    # Configurar página
+    st.set_page_config(
+        page_title="PetVac - Sistema de Vacinação",
+        page_icon="🐾",
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+    
+    # CSS adicional para melhor contraste e legibilidade
+    st.markdown(f"""
+    <style>
+        /* Margens e padding padrão */
+        .main {{
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }}
+        
+        /* Fundo e cores principais */
+        .stApp {{
+            background-color: #f8f9fa;
+        }}
+        
+        /* Titles e labels com ALTO CONTRASTE */
+        .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
+        .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {{
+            color: {COLORS['primary']} !important;
+            font-weight: 700 !important;
+        }}
+        
+        .stMarkdown p, .stMarkdown span, .stMarkdown label {{
+            color: {COLORS['text_primary']} !important;
+            font-weight: 500 !important;
+        }}
+        
+        /* Inputs com melhor contraste */
+        .stTextInput input, .stTextArea textarea,
+        .stNumberInput input, .stDateInput input {{
+            color: {COLORS['text_primary']} !important;
+            background-color: white !important;
+            border: 2px solid #ddd !important;
+        }}
+        
+        /* Selectbox com cor diferenciada */
+        .stSelectbox {{
+            background-color: transparent !important;
+        }}
+        
+        .stSelectbox label {{
+            color: {COLORS['text_primary']} !important;
+        }}
+        
+        [data-baseweb="select"] {{
+            background-color: white !important;
+            width: 100% !important;
+        }}
+        
+        [data-baseweb="select"] > div {{
+            background-color: #f0f4f8 !important;
+            border: 2px solid #b0c4de !important;
+        }}
+        
+        /* Button do selectbox - principal */
+        [data-baseweb="select"] button {{
+            background-color: #f0f4f8 !important;
+            border: 2px solid #b0c4de !important;
+            color: {COLORS['primary']} !important;
+            font-weight: 600 !important;
+            height: 45px !important;
+        }}
+        
+        [data-baseweb="select"] button:hover {{
+            background-color: #e6f0fa !important;
+            border-color: #4682b4 !important;
+        }}
+        
+        [data-baseweb="select"] button:focus {{
+            background-color: #e6f0fa !important;
+            outline: none !important;
+        }}
+        
+        /* Menu do selectbox - opções */
+        [data-baseweb="popover"] {{
+            background-color: white !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        }}
+        
+        [data-baseweb="menu"] {{
+            background-color: white !important;
+        }}
+        
+        [data-baseweb="menu"] > div {{
+            background-color: white !important;
+        }}
+        
+        [data-baseweb="menu"] [role="option"] {{
+            color: {COLORS['text_primary']} !important;
+            background-color: white !important;
+            font-weight: 500 !important;
+        }}
+        
+        [data-baseweb="menu"] [role="option"]:hover {{
+            background-color: #f0f4f8 !important;
+            color: {COLORS['primary']} !important;
+            border-radius: 8px !important;
+        }}
+        
+        [data-baseweb="menu"] [role="option"][aria-selected="true"] {{
+            background-color: #e6f0fa !important;
+            color: {COLORS['primary']} !important;
+            font-weight: 600 !important;
+        }}
+        
+        /* Input/Search dentro do selectbox - OCULTAR apenas a barra de busca */
+        [data-baseweb="menu"] [data-baseweb="input"] {{
+            display: none !important;
+        }}
+        
+        [role="listbox"] [data-baseweb="input"] {{
+            display: none !important;
+        }}
+        
+        [data-baseweb="menu"] input {{
+            display: none !important;
+        }}
+        
+        /* Garante que qualquer input dentro de popovers/menus seja ocultado */
+        div[data-baseweb="popover"] input {{
+            display: none !important;
+        }}
+        
+        .stTextInput input::placeholder, .stTextArea textarea::placeholder {{
+            color: {COLORS['gray']} !important;
+            opacity: 0.7 !important;
+        }}
+        
+        /* Header/Banner superior do Streamlit */
+        [data-testid="stAppHeader"] {{
+            background-color: {COLORS['primary']} !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 100 !important;
+        }}
+        
+        [data-testid="stAppHeader"] button {{
+            color: white !important;
+        }}
+        
+        [data-testid="stAppHeader"] button svg {{
+            color: white !important;
+            fill: white !important;
+        }}
+        
+        /* Cabeçalho da página (PetVac) - Forçar branco */
+        /* Aplicar apenas aos elementos de texto, não ao container */
+        .stMarkdown div[style*="text-align: center"] h1 {{
+            color: white !important;
+            background-color: {COLORS['primary']} !important;
+            padding: 1.5rem !important;
+            margin: 0 -1.5rem !important;
+            width: calc(100% + 3rem) !important;
+            position: relative !important;
+            left: -1.5rem !important;
+        }}
+        
+        .stMarkdown div[style*="text-align: center"] p {{
+            color: white !important;
+            background-color: {COLORS['primary']} !important;
+            padding: 0 1.5rem 1.5rem !important;
+            margin: 0 -1.5rem !important;
+            width: calc(100% + 3rem) !important;
+            position: relative !important;
+            left: -1.5rem !important;
+        }}
+        
+        /* Emoji precisa de fundo também */
+        .stMarkdown div[style*="text-align: center"] > div:first-child {{
+            background-color: {COLORS['primary']} !important;
+            padding-top: 1.5rem !important;
+            margin: -1.5rem -1.5rem 0 -1.5rem !important;
+            width: calc(100% + 3rem) !important;
+        }}
+        
+        /* Sidebar styling */
+        [data-testid="stSidebar"] [data-testid="stSidebarContent"] {{
+            padding-top: 2rem;
+        }}
+        
+        [data-testid="stSidebar"] .stMarkdown h1,
+        [data-testid="stSidebar"] .stMarkdown h2,
+        [data-testid="stSidebar"] .stMarkdown h3,
+        [data-testid="stSidebar"] .stMarkdown p,
+        [data-testid="stSidebar"] .stMarkdown span {{
+            color: white !important;
+        }}
+        
+        [data-testid="stSidebar"] .stMarkdown {{
+            color: white !important;
+        }}
+        
+        /* Remove top padding */
+        [data-testid="stAppViewContainer"] {{
+            padding-top: 0;
+        }}
+        
+        /* Botões com melhor estilo */
+        .stButton > button {{
+            background: {COLORS['gradient_primary']} !important;
+            color: white !important;
+            border-radius: 12px !important;
+            padding: 10px 24px !important;
+            font-weight: 600 !important;
+            border: none !important;
+        }}
+        
+        .stButton > button:hover {{
+            transform: translateY(-2px) !important;
+        }}
+        
+        /* Tabs */
+        .stTabs [data-baseweb="tab-list"] {{
+            gap: 12px;
+        }}
+        
+        .stTabs [data-baseweb="tab-list"] button {{
+            border-radius: 12px !important;
+            font-weight: 600 !important;
+            color: {COLORS['text_primary']} !important;
+        }}
+        
+        .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {{
+            color: {COLORS['primary']} !important;
+            border-bottom: 3px solid {COLORS['secondary']} !important;
+        }}
+        
+        /* Dividers */
+        hr {{
+            border: none !important;
+            border-top: 2px solid #e0e0e0 !important;
+            margin: 2rem 0 !important;
+        }}
+    </style>
     """, unsafe_allow_html=True)
