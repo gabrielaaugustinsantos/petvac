@@ -31,7 +31,7 @@ def salvar_dados(df, caminho):
 COLUNAS = {
     "pets": ["idPet", "nome", "especie", "raca", "dataNascimento", "idTutor"],
     "tutores": ["idTutor", "nome", "telefone", "email", "endereco"],
-    "vacinas": ["idVacina", "idPet", "nome", "dataAplicacao", "dataProximaDose", "status"],
-    "usuarios": ["idUsuario", "nome", "senha", "cargo"],
-    "notificacoes": ["idNotificacao", "mensagem", "dataEnvio", "status"]
+    "vacinas": ["idVacina", "idPet", "nome", "dataAplicacao", "dataProximaDose", "status", "obs"],
+    "usuarios": ["idUsuario", "nome", "email", "senha", "cargo"],
+    "notificacoes": ["idNotificacao", "mensagem", "dataEnvio", "status"],
 }
