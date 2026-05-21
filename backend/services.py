@@ -92,6 +92,29 @@ def listar_pets() -> pd.DataFrame:
     return carregar_dados("data/pets.csv", COLUNAS["pets"])
 
 
+def remover_pet(idPet: int) -> str:
+    """
+    Remove um pet do sistema.
+
+    Args:
+        idPet: ID do pet a ser removido
+
+    Returns:
+        Mensagem de sucesso ou erro
+    """
+    try:
+        df = carregar_dados("data/pets.csv", COLUNAS["pets"])
+        if idPet not in df["idPet"].values:
+            return "❌ Pet não encontrado."
+        df = df[df["idPet"] != idPet]
+        salvar_dados(df, "data/pets.csv")
+        log_info(f"Pet {idPet} removido com sucesso")
+        return "✅ Pet removido com sucesso!"
+    except Exception as e:
+        log_error(f"Erro ao remover pet {idPet}", e)
+        return "❌ Erro ao remover pet"
+
+
 # ---------- TUTORES ----------
 
 def cadastrar_tutor(nome: str, telefone: str, email: str, endereco: str = "") -> str:
@@ -158,19 +181,48 @@ def listar_tutores() -> pd.DataFrame:
     return carregar_dados("data/tutores.csv", COLUNAS["tutores"])
 
 
+def remover_tutor(idTutor: int) -> str:
+    """
+    Remove um tutor do sistema.
+
+    Args:
+        idTutor: ID do tutor a ser removido
+
+    Returns:
+        Mensagem de sucesso ou erro
+    """
+    try:
+        df = carregar_dados("data/tutores.csv", COLUNAS["tutores"])
+        if idTutor not in df["idTutor"].values:
+            return "❌ Tutor não encontrado."
+        df = df[df["idTutor"] != idTutor]
+        salvar_dados(df, "data/tutores.csv")
+        log_info(f"Tutor {idTutor} removido com sucesso")
+        return "✅ Tutor removido com sucesso!"
+    except Exception as e:
+        log_error(f"Erro ao remover tutor {idTutor}", e)
+        return "❌ Erro ao remover tutor"
+
+
 # ---------- VACINAS E HISTÓRICO ----------
 
-def registrar_vacina(idPet: int, nome: str, dataAplicacao: Optional[str] = None, 
-                     dataProximaDose: Optional[str] = None) -> str:
+def registrar_vacina(
+    idPet: int,
+    nome: str,
+    dataAplicacao: Optional[str] = None,
+    dataProximaDose: Optional[str] = None,
+    obs: Optional[str] = None,
+) -> str:
     """
     Registra uma nova vacina com status automático baseado na data.
-    
+
     Args:
         idPet: ID do pet
         nome: Nome da vacina
         dataAplicacao: Data de aplicação (YYYY-MM-DD ou None)
         dataProximaDose: Data da próxima dose (YYYY-MM-DD ou None)
-        
+        obs: Observações opcionais sobre a aplicação
+
     Returns:
         Mensagem de sucesso ou erro
     """
@@ -178,8 +230,8 @@ def registrar_vacina(idPet: int, nome: str, dataAplicacao: Optional[str] = None,
         # Validar dados
         VacinaValidator(
             nome=nome,
-            data_aplicacao=dataAplicacao or "",
-            proxima_dose=dataProximaDose,
+            data_aplicacao=dataAplicacao or None,
+            proxima_dose=dataProximaDose or None,
             status="pendente",
             idPet=idPet
         )
@@ -216,7 +268,8 @@ def registrar_vacina(idPet: int, nome: str, dataAplicacao: Optional[str] = None,
             "nome": nome,
             "dataAplicacao": str(dataAplicacao_date) if dataAplicacao_date else "",
             "dataProximaDose": str(dataProximaDose_date) if dataProximaDose_date else "",
-            "status": status
+            "status": status,
+            "obs": obs or "",
         }
 
         novo_vacina_df = pd.DataFrame([vacina])
@@ -278,15 +331,21 @@ def consultar_historico_pet(idPet: int):
     return historico
 
 
-def aplicar_dose(idVacina: int, dataAplicacao: str, dataProximaDose: Optional[str] = None) -> str:
+def aplicar_dose(
+    idVacina: int,
+    dataAplicacao: str,
+    dataProximaDose: Optional[str] = None,
+    obs: Optional[str] = None,
+) -> str:
     """
     Marca uma vacina como aplicada e registra a próxima dose.
-    
+
     Args:
         idVacina: ID da vacina pendente
         dataAplicacao: Data da aplicação
         dataProximaDose: Data da próxima dose (opcional)
-        
+        obs: Observações opcionais sobre a aplicação
+
     Returns:
         Mensagem de sucesso ou erro
     """
@@ -311,7 +370,8 @@ def aplicar_dose(idVacina: int, dataAplicacao: str, dataProximaDose: Optional[st
             "nome": nome,
             "dataAplicacao": str(dataAplicacao),
             "dataProximaDose": str(dataProximaDose) if dataProximaDose else "",
-            "status": "aplicada"
+            "status": "aplicada",
+            "obs": obs or "",
         }
 
         novo_registro_df = pd.DataFrame([novo_registro])
@@ -325,160 +385,165 @@ def aplicar_dose(idVacina: int, dataAplicacao: str, dataProximaDose: Optional[st
         return "❌ Erro ao aplicar dose"
 
 
+def agendar_vacina(idVacina: int, dataAgendamento: str) -> str:
+    """
+    Atualiza apenas a dataProximaDose de uma vacina pendente, sem alterar o status.
+    Usado para agendar uma data futura de aplicação sem dar a vacina como concluída.
+
+    Args:
+        idVacina: ID da vacina a agendar
+        dataAgendamento: Nova data para a próxima dose (YYYY-MM-DD)
+
+    Returns:
+        Mensagem de sucesso ou erro
+    """
+    try:
+        df = carregar_dados("data/vacinas.csv", COLUNAS["vacinas"])
+        idx = df.index[df["idVacina"] == idVacina]
+        if idx.empty:
+            return "❌ Vacina não encontrada."
+        df.loc[idx, "dataProximaDose"] = str(dataAgendamento)
+        salvar_dados(df, "data/vacinas.csv")
+        log_info(f"Vacina {idVacina} agendada para {dataAgendamento}")
+        return "✅ Vacina agendada com sucesso!"
+    except Exception as e:
+        log_error("Erro ao agendar vacina", e)
+        return "❌ Erro ao agendar vacina"
+
+
 # ---------- LOGIN & AUTENTICAÇÃO ----------
 
-def login_usuario(nome: str, senha: str, cargo: str) -> Tuple[bool, str]:
+def login_usuario(email: str, senha: str) -> Tuple[bool, str, dict]:
     """
-    Autentica um usuário com validação segura de senha usando bcrypt.
-    
+    Autentica um usuário pelo email e senha.
+
     Args:
-        nome: Nome do usuário
+        email: E-mail do usuário
         senha: Senha em texto plano
-        cargo: Cargo do usuário
-        
+
     Returns:
-        Tupla (sucesso: bool, mensagem: str)
+        Tupla (sucesso: bool, mensagem: str, dados: dict)
+        dados contém nome e cargo quando sucesso=True
     """
     try:
         df = carregar_dados("data/usuarios.csv", COLUNAS["usuarios"])
 
         if df.empty:
-            log_warning(f"Tentativa de login sem usuários cadastrados")
-            return False, "❌ Não há usuários cadastrados."
+            log_warning("Tentativa de login sem usuários cadastrados")
+            return False, "❌ Não há usuários cadastrados.", {}
 
-        # Normalização forte dos inputs
-        nome_norm = nome.strip().lower()
-        cargo_norm = cargo.strip().lower()
+        email_norm = email.strip().lower()
+        df["email_norm"] = df["email"].astype(str).str.strip().str.lower()
 
-        # Criar colunas normalizadas apenas em memória
-        df["nome_norm"] = df["nome"].astype(str).str.strip().str.lower()
-        df["cargo_norm"] = df["cargo"].astype(str).str.strip().str.lower()
+        match = df[df["email_norm"] == email_norm]
 
-        match_index = df[
-            (df["nome_norm"] == nome_norm) &
-            (df["cargo_norm"] == cargo_norm)
-        ].index
+        if match.empty:
+            log_warning(f"Falha de login: email {email} não encontrado")
+            return False, "❌ E-mail ou senha incorretos.", {}
 
-        if match_index.empty:
-            log_warning(f"Falha de login: usuário/cargo {nome}/{cargo} não encontrado")
-            return False, "❌ Usuário ou cargo inválidos."
+        index = match.index[0]
+        senha_hash = str(df.loc[index, "senha"])
 
-        # Verificar senha usando bcrypt
-        index = match_index[0]
-        senha_hash = df.loc[index, "senha"]
-        
         if not verify_password(senha, senha_hash):
-            log_warning(f"Falha de login: senha incorreta para {nome}")
-            return False, "❌ Senha incorreta."
+            log_warning(f"Falha de login: senha incorreta para {email}")
+            return False, "❌ E-mail ou senha incorretos.", {}
 
-        # Marcar como logado
-        df.loc[index, "logado"] = True
-        df = df.drop(columns=["nome_norm", "cargo_norm"])
-        salvar_dados(df, "data/usuarios.csv")
+        nome  = str(df.loc[index, "nome"])
+        cargo = str(df.loc[index, "cargo"])
+        log_info(f"Login bem-sucedido: {nome} ({cargo})")
+        return True, f"✅ Bem-vindo(a), {nome}!", {"nome": nome, "cargo": cargo}
 
-        usuario_nome = df.loc[index, "nome"]
-        log_info(f"Login bem-sucedido: {usuario_nome} ({cargo})")
-        return True, f"✅ Login realizado! Bem-vindo(a), {usuario_nome}."
-        
     except Exception as e:
-        log_error(f"Erro ao fazer login", e)
-        return False, "❌ Erro ao fazer login"
+        log_error("Erro ao fazer login", e)
+        return False, "❌ Erro ao fazer login.", {}
 
 
-def cadastrar_usuario(nome: str, senha: str, cargo: str) -> Tuple[bool, str]:
+def cadastrar_usuario(nome: str, email: str, senha: str, cargo: str) -> Tuple[bool, str]:
     """
-    Cadastra um novo usuário com senha criptografada usando bcrypt.
-    
+    Cadastra um novo usuário com senha criptografada.
+
     Args:
-        nome: Nome do usuário
+        nome:  Nome completo
+        email: E-mail único do usuário
         senha: Senha em texto plano
-        cargo: Cargo do usuário
-        
+        cargo: recepcionista ou veterinario
+
     Returns:
         Tupla (sucesso: bool, mensagem: str)
     """
     try:
-        # Validar dados
-        UsuarioValidator(nome=nome, email="temp@temp.com", telefone="1234567890", 
-                        cargo=cargo, senha=senha)
-        
+        UsuarioValidator(nome=nome, email=email, telefone="11900000000", cargo=cargo, senha=senha)
+
         df = carregar_dados("data/usuarios.csv", COLUNAS["usuarios"])
-        novo_id = len(df) + 1
 
-        # Hash da senha com bcrypt
-        senha_hash = hash_password(senha)
+        # E-mail deve ser único
+        email_norm = email.strip().lower()
+        if not df.empty and email_norm in df["email"].astype(str).str.strip().str.lower().values:
+            return False, "❌ Já existe uma conta com esse e-mail."
 
+        novo_id = int(df["idUsuario"].max()) + 1 if not df.empty else 1
         novo_usuario = {
             "idUsuario": novo_id,
-            "nome": nome,
-            "senha": senha_hash,
+            "nome": nome.strip(),
+            "email": email_norm,
+            "senha": hash_password(senha),
             "cargo": cargo,
-            "logado": False
         }
 
-        novo_usuario_df = pd.DataFrame([novo_usuario])
-        df = pd.concat([df, novo_usuario_df], ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([novo_usuario])], ignore_index=True)
         salvar_dados(df, "data/usuarios.csv")
 
         log_info(f"Usuário '{nome}' cadastrado com sucesso (Cargo: {cargo})")
-        return True, "✅ Usuário cadastrado com sucesso!"
-        
+        return True, "✅ Conta criada com sucesso!"
+
     except ValueError as e:
-        log_error(f"Erro ao validar dados do usuário: {str(e)}")
-        return False, f"❌ Erro: {str(e)}"
+        log_error(f"Erro ao validar dados do usuário: {e}")
+        return False, f"❌ {e}"
     except Exception as e:
-        log_error(f"Erro ao cadastrar usuário", e)
-        return False, "❌ Erro ao cadastrar usuário"
+        log_error("Erro ao cadastrar usuário", e)
+        return False, "❌ Erro ao cadastrar usuário."
 
 
-def logout_usuario(nome: str, senha: str, cargo: str) -> str:
+def logout_usuario() -> str:
+    """Logout é gerenciado pelo cliente via JWT — sem estado no servidor."""
+    return "👋 Logout realizado com sucesso."
+
+
+def redefinir_senha(email: str, nova_senha: str) -> Tuple[bool, str]:
     """
-    Desloga um usuário do sistema.
-    
+    Redefine a senha de um usuário a partir do e-mail.
+
     Args:
-        nome: Nome do usuário
-        senha: Senha em texto plano
-        cargo: Cargo do usuário
-        
+        email:      E-mail cadastrado
+        nova_senha: Nova senha em texto plano
+
     Returns:
-        Mensagem de sucesso
+        Tupla (sucesso: bool, mensagem: str)
     """
     try:
+        if len(nova_senha.strip()) < 6:
+            return False, "❌ A nova senha deve ter pelo menos 6 caracteres."
+
         df = carregar_dados("data/usuarios.csv", COLUNAS["usuarios"])
+        email_norm = email.strip().lower()
+        df["email_norm"] = df["email"].astype(str).str.strip().str.lower()
 
-        if df.empty:
-            return "⚠️ Nenhum usuário cadastrado."
+        match = df[df["email_norm"] == email_norm]
+        if match.empty:
+            # Mensagem genérica para não confirmar existência de e-mails
+            return True, "✅ Se o e-mail existir, a senha foi redefinida."
 
-        if "logado" not in df.columns:
-            return "⚠️ Nenhum usuário está logado atualmente."
-
-        # Buscar por nome, cargo e verificar senha
-        nome_norm = nome.strip().lower()
-        cargo_norm = cargo.strip().lower()
-
-        df["nome_norm"] = df["nome"].astype(str).str.strip().str.lower()
-        df["cargo_norm"] = df["cargo"].astype(str).str.strip().str.lower()
-
-        match_index = df[
-            (df["nome_norm"] == nome_norm) &
-            (df["cargo_norm"] == cargo_norm)
-        ].index
-
-        if match_index.empty or not verify_password(senha, df.loc[match_index[0], "senha"]):
-            return "❌ Credenciais inválidas para logout."
-
-        index = match_index[0]
-        df.loc[index, "logado"] = False
-        df = df.drop(columns=["nome_norm", "cargo_norm"])
-
+        index = match.index[0]
+        df.loc[index, "senha"] = hash_password(nova_senha)
+        df = df.drop(columns=["email_norm"])
         salvar_dados(df, "data/usuarios.csv")
-        log_info(f"Logout realizado por {nome}")
-        
-        return f"👋 Logout realizado. Até logo, {nome}!"
-        
+
+        log_info(f"Senha redefinida para o e-mail {email}")
+        return True, "✅ Senha redefinida com sucesso!"
+
     except Exception as e:
-        log_error(f"Erro ao fazer logout", e)
-        return "❌ Erro ao fazer logout"
+        log_error("Erro ao redefinir senha", e)
+        return False, "❌ Erro ao redefinir senha."
 
 
 # ---------- NOTIFICAÇÕES ----------

@@ -59,7 +59,12 @@ export interface AuthData {
 export type Cargo = 'recepcionista' | 'veterinario' | 'admin'
 
 export const ESPECIES = ['Cachorro', 'Gato', 'Pássaro', 'Coelho', 'Hamster', 'Outro'] as const
-export const CARGOS: { value: Cargo; label: string }[] = [
+
+/** Usado na tela de cadastro (label exibido = "Tipo de Usuário") */
+export const TIPO_USUARIO: { value: Cargo; label: string }[] = [
   { value: 'recepcionista', label: 'Recepcionista' },
-  { value: 'veterinario', label: 'Veterinário' },
+  { value: 'veterinario',   label: 'Veterinário(a)' },
 ]
+
+/** @deprecated use TIPO_USUARIO */
+export const CARGOS = TIPO_USUARIO

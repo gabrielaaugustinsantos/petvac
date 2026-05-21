@@ -1,19 +1,38 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import { Spinner } from '@/components/ui/Spinner'
 
+// Rotas permitidas por cargo
+const ROTAS_POR_CARGO: Record<string, string[]> = {
+  recepcionista: ['/dashboard', '/tutores', '/pets', '/notificacoes'],
+  veterinario:   ['/dashboard', '/vacinas', '/historico', '/notificacoes'],
+}
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth()
-  const router = useRouter()
+  const router   = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
-    if (!isLoading && !user) router.push('/')
-  }, [user, isLoading, router])
+    if (isLoading) return
+
+    // Sem sessão → login
+    if (!user) {
+      router.push('/')
+      return
+    }
+
+    // Rota não permitida para o cargo → redireciona ao dashboard
+    const permitidas = ROTAS_POR_CARGO[user.cargo] ?? ['/dashboard']
+    if (!permitidas.includes(pathname)) {
+      router.push('/dashboard')
+    }
+  }, [user, isLoading, pathname, router])
 
   if (isLoading) {
     return (

@@ -47,7 +47,7 @@ export default function DashboardPage() {
 
       {/* Métricas */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard label="Tutores"   value={metrics?.total_tutores  ?? 0} icon="👤" accent="bg-blue-50" />
+        <MetricCard label="Tutores"   value={metrics?.total_tutores  ?? 0} icon="👤" accent="bg-orange-50" />
         <MetricCard label="Pets"      value={metrics?.total_pets     ?? 0} icon="🐶" accent="bg-green-50" />
         <MetricCard label="Vacinas"   value={metrics?.total_vacinas  ?? 0} icon="💉" accent="bg-purple-50" />
         <MetricCard

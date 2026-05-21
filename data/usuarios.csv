@@ -1,7 +1,3 @@
-idUsuario,nome,senha,cargo,logado
-1,Lucas Almeida,12345,recepcionista,
-2,Camila Santos,12345,veterinario,
-3,Dafni Rosa,12345,recepcionista,
-4,Julia Torres,12345,recepcionista,
-5,Dr. João Silva,$2b$12$3/CLPnYNU./vYpHEnQMBOOBcz5LAiBu7w.sWBZTgepUSppYOAKWNu,recepcionista,
-6,Lorenzo Zardo,$2b$12$fygsRePYZM5sK.MS3OXjZeoFnDNDIJE7GttWMwjNQrrK89rGpo/aO,recepcionista,True
+idUsuario,nome,email,senha,cargo
+1,Lorenzo Zardo,lorenzozardo19@gmail.com,$2b$12$O93XCB5sL0FA57jLP4WPTe6QG2.6uHK5oXNcVY/wlDn17Cp9PPDB2,recepcionista
+2,Lorenzo,lorenzardo1912@gmail.com,$2b$12$ZateWlNU1SYP.eSdC2.GN.U/HsUe2Z13bP.CD/3bxMbm2mLsxiyr6,veterinario

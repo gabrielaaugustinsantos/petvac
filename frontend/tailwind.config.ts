@@ -6,14 +6,15 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#1E5F7A',
-          dark: '#185168',
-          light: '#E8F4F8',
+          DEFAULT: '#F97316',   // orange-500
+          dark:    '#EA580C',   // orange-600
+          light:   '#FFF7ED',   // orange-50
+          subtle:  '#FFEDD5',   // orange-100
         },
-        success: '#28A745',
-        danger: '#DC3545',
-        warning: '#F39C12',
-        info: '#17A2B8',
+        success: '#16A34A',
+        danger:  '#DC2626',
+        warning: '#D97706',
+        info:    '#2563EB',
       },
     },
   },

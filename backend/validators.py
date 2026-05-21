@@ -101,19 +101,21 @@ class PetValidator(BaseModel):
 class VacinaValidator(BaseModel):
     """Validação para dados de vacina."""
     nome: str
-    data_aplicacao: str
+    data_aplicacao: Optional[str] = None   # None/vazio = vacina pendente, ainda não aplicada
     proxima_dose: Optional[str] = None
     status: str
     idPet: int
-    
+
     @field_validator("nome")
     def nome_valido(cls, v):
         if len(v.strip()) < 2:
             raise ValueError("Nome da vacina deve ter pelo menos 2 caracteres")
         return v.strip()
-    
+
     @field_validator("data_aplicacao")
     def data_aplicacao_valida(cls, v):
+        if not v:          # None ou string vazia → sem data de aplicação, tudo certo
+            return v
         try:
             datetime.strptime(v, "%Y-%m-%d")
             return v

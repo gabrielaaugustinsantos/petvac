@@ -10,7 +10,7 @@ const styles: Record<AlertVariant, { bg: string; border: string; text: string; i
   success: { bg: 'bg-green-50',  border: 'border-green-400', text: 'text-green-800', icon: '✓' },
   error:   { bg: 'bg-red-50',    border: 'border-red-400',   text: 'text-red-800',   icon: '✕' },
   warning: { bg: 'bg-yellow-50', border: 'border-yellow-400',text: 'text-yellow-800',icon: '⚠' },
-  info:    { bg: 'bg-blue-50',   border: 'border-blue-400',  text: 'text-blue-800',  icon: 'ℹ' },
+  info:    { bg: 'bg-orange-50', border: 'border-primary',   text: 'text-orange-800', icon: 'ℹ' },
 }
 
 export function Alert({ variant, message, onClose }: AlertProps) {

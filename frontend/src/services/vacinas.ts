@@ -16,8 +16,9 @@ export interface AplicarDoseBody {
 }
 
 export const vacinasService = {
-  pendentes:  ()                                   => api.get<Vacina[]>('/vacinas/pendentes'),
-  registrar:  (body: VacinaCreate)                 => api.post<MessageResponse>('/vacinas/', body),
-  aplicar:    (id: number, body: AplicarDoseBody)  => api.post<MessageResponse>(`/vacinas/${id}/aplicar`, body),
-  historico:  (idPet: number)                      => api.get<Vacina[]>(`/vacinas/historico/${idPet}`),
+  pendentes:  ()                                        => api.get<Vacina[]>('/vacinas/pendentes'),
+  registrar:  (body: VacinaCreate)                      => api.post<MessageResponse>('/vacinas/', body),
+  aplicar:    (id: number, body: AplicarDoseBody)       => api.post<MessageResponse>(`/vacinas/${id}/aplicar`, body),
+  agendar:    (id: number, dataAgendamento: string)     => api.patch<MessageResponse>(`/vacinas/${id}/agendar`, { dataAgendamento }),
+  historico:  (idPet: number)                           => api.get<Vacina[]>(`/vacinas/historico/${idPet}`),
 }
