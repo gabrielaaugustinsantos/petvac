@@ -1,0 +1,216 @@
+# AGENTS.md — b04a36a2-348b-43de-815d-17dd0efd1c2d
+
+> Behavioral contract for AI coding agents.
+> Read this file **BEFORE** making any code changes.
+
+| Field | Value |
+|-------|-------|
+| Architecture | Monolithic application with a clear separation of concerns between frontend and backend. The frontend is built with Next.js (likely using the App Router), and the backend is a Python API (strongly suggesting FastAPI due to `api/deps.py`). The backend itself appears to follow a layered architecture, with `api/` handling the presentation/API layer and `backend/` containing core domain logic and models. The `pages/` directory, containing Python files, is ambiguous but likely represents specific API endpoints or controllers for 'page-like' functionalities within the Python backend, possibly serving some server-rendered content or acting as specific data endpoints for the frontend. |
+| Language | Python |
+| Framework | Next.js |
+| Last Updated | June 2026 |
+
+---
+
+## Navigation Protocol
+
+```
+Reading order:
+1. THIS FILE (AGENTS.md)          ← You are here
+2. llms.txt                       ← Documentation map
+3. repomap.txt                    ← Symbol overview
+4. <module>/ReadMe.LLM            ← Only the module you will modify
+5. <module>/AGENTS.md             ← Module-specific overrides
+```
+
+### Decision Tree
+
+```
+What do you need to do?
+│
+├─► Understand overall architecture?
+│   └─► Read: repomap.txt → then this file's "File Structure" section
+│
+├─► Create new component/module?
+│   └─► Read: <nearest module>/ReadMe.LLM for patterns
+│
+├─► Modify existing code?
+│   └─► Read: <target module>/ReadMe.LLM + AGENTS.md
+│
+├─► Add new feature end-to-end?
+│   └─► Read: repomap.txt for affected modules → each ReadMe.LLM
+│
+└─► Debug or trace data flow?
+    └─► Read: _codein/knowledge_graph.json or repomap.txt
+```
+
+### Rules
+- **DO NOT** load all ReadMe.LLM files at once — load only the module you need
+- **DO NOT** skip this file and go straight to code
+- **DO NOT** modify code without checking the module's AGENTS.md overrides
+
+---
+
+## Project Context
+
+**Codebase:** 80 files, 151 functions
+
+### Detected Patterns
+
+- No specific patterns detected
+
+### Technology Stack
+
+- Stack not identified
+
+---
+
+## File Structure Rules
+
+### Modular Monolith
+
+```
+src/
+├── modules/
+│   ├── module-a/
+│   └── module-b/
+├── shared/         → Shared utilities
+└── infrastructure/
+```
+
+**Rules:**
+1. Modules should be as independent as possible
+2. Inter-module communication via public interfaces
+3. `shared/` contains only truly generic utilities
+
+---
+
+## Code Patterns
+
+Follow existing patterns in the code. Before implementing:
+
+1. Look for similar implementations in the codebase
+2. Read the target module's `ReadMe.LLM`
+3. Maintain consistency with existing style
+
+---
+
+## Naming Conventions
+
+```python
+# Files / modules: snake_case
+my_module.py
+
+# Classes: PascalCase
+class MyService: ...
+
+# Functions / variables: snake_case
+def my_function():
+    my_variable = 1
+
+# Constants: UPPER_SNAKE_CASE
+MAX_RETRIES = 3
+
+# Private: prefix _
+def _internal(): ...
+```
+
+---
+
+## Import Rules
+
+### Order
+1. **Standard libraries** (built-in)
+2. **External dependencies** (third-party)
+3. **Internal imports** (from project)
+
+```python
+# 1. Standard library
+import os
+from pathlib import Path
+
+# 2. Third-party
+from fastapi import FastAPI
+
+# 3. Internal
+from .my_module import my_function
+from src.services import MyService
+```
+
+---
+
+## Useful Commands
+
+```bash
+# dev
+npm run dev
+
+# build
+npm run build
+
+# start
+npm run start
+
+# lint
+npm run lint
+
+```
+
+---
+
+## Anti-Patterns
+
+> Things you must **NOT** do
+
+1. **Don't duplicate code** — check the module's `ReadMe.LLM` for existing implementations
+2. **Don't ignore architecture** — respect layers and boundaries described above
+3. **Don't hardcode values** — use configuration / constants / env vars
+4. **Don't make giant commits** — small, focused, one feature per commit
+5. **Don't ignore types** — maintain the project's type discipline
+6. **Don't modify build config** unless strictly necessary
+
+---
+
+## Pre-Commit Checklist
+
+```
+[ ] Code follows patterns from the module's ReadMe.LLM
+[ ] New files are in the correct directory (check File Structure Rules)
+[ ] Imports follow the ordering convention
+[ ] No duplicate code of something that already exists
+[ ] Tests added / updated
+[ ] Module's ReadMe.LLM updated if public API changed
+```
+
+---
+
+## Key Modules
+
+| Module | Description |
+|--------|-------------|
+| `pages` | See `ReadMe.LLM` inside |
+| `backend` | See `ReadMe.LLM` inside |
+| `test_improvements.py` | See `ReadMe.LLM` inside |
+| `api` | See `ReadMe.LLM` inside |
+| `frontend` | See `ReadMe.LLM` inside |
+| `app.py` | See `ReadMe.LLM` inside |
+
+---
+
+## Entry Points
+
+- `test_improvements.py`
+- `app.py`
+- `pages/_notificacoes.py`
+- `pages/cadastro_pet.py`
+- `pages/cadastro_tutor.py`
+- `pages/home.py`
+- `pages/historico.py`
+- `pages/cadastrar_usuario.py`
+- `pages/vacinas.py`
+- `api/__init__.py`
+
+---
+
+
+*Generated by Code-In Agent — June 2026*
