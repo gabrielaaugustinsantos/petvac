@@ -1,0 +1,353 @@
+# ReadMe.LLM — frontend/src/
+
+> Machine-readable module documentation for `b04a36a2-348b-43de-815d-17dd0efd1c2d`
+> Generated: 2026-06-07
+
+---
+
+## Module Summary
+
+- **Files:** 28
+- **Functions:** 150
+- **Classes:** 0
+- **Language:** Python
+
+### Files
+
+- `Alert.tsx`
+- `AuthContext.tsx`
+- `Badge.tsx`
+- `Button.tsx`
+- `Header.tsx`
+- `Input.tsx`
+- `Modal.tsx`
+- `Select.tsx`
+- `Sidebar.tsx`
+- `Spinner.tsx`
+- `api.ts`
+- `auth.ts`
+- `auth.ts`
+- `dashboard.ts`
+- `index.ts`
+- `layout.tsx`
+- `layout.tsx`
+- `notificacoes.ts`
+- `page.tsx`
+- `page.tsx`
+- `page.tsx`
+- `page.tsx`
+- `page.tsx`
+- `page.tsx`
+- `page.tsx`
+- `pets.ts`
+- `tutores.ts`
+- `vacinas.ts`
+
+---
+
+## Signatures
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `MetricCard` | `{ label, value, icon, accent }: { label: string; value: number; icon: string; accent: string }` | `None` |  |
+| `DashboardPage` | `` | `None` |  |
+| `err` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `HistoricoPage` | `` | `None` |  |
+| `e` | `` | `None` |  |
+| `nomeTutor` | `idTutor: number` | `None` |  |
+| `t` | `` | `None` |  |
+| `nsultar()` | `` | `None` | ✓ |
+| `>` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `.` | `` | `None` |  |
+| `s` | `` | `None` |  |
+| `e` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+
+### `layout.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `DashboardLayout` | `{ children }: { children: React.ReactNode }` | `None` |  |
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `> 0 ? `Venci` | `a há ${di` | `s} dia${dias !== 1 ? 's' : ''}` : 'Vencida` |  |
+| `(${diasInfo}` | `. Por favor,, ntre em contato, ara agendar a apli, ção. Obrigado! —` | `PetVac 🐾` |  |
+| ` setSuccess]    ` | `` | `None` |  |
+| `ad()` | `` | `None` | ✓ |
+| `Aplicacao })
+ ` | `    setSuccess('` | `None` |  |
+| `? e.message : 'Er` | `` | `None` |  |
+| `// ── Cards enriqu` | `cidos ──────────` | `None` | ✓ |
+| `.` | `` | `None` |  |
+| `a` | `` | `None` |  |
+| `:` | `` | `None` |  |
+| `:` | `` | `None` |  |
+| `'` | `` | `None` |  |
+| `a` | `` | `None` |  |
+| `&` | `` | `None` |  |
+| `u` | `` | `None` |  |
+| `f` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `PetsPage` | `` | `None` |  |
+| `load` | `` | `None` | ✓ |
+| `nomeTutor` | `id: number` | `None` |  |
+| `t` | `` | `None` |  |
+| `openNovo` | `` | `None` |  |
+| `openEditar` | `p: Pet` | `None` |  |
+| `handleSubmit` | `e: React.FormEvent` | `None` | ✓ |
+| `e` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| `(` | `` | `None` |  |
+| `s` | `` | `None` |  |
+| `(` | `` | `None` |  |
+| `e` | `` | `None` |  |
+| `{` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `TutoresPage` | `` | `None` |  |
+| `load` | `` | `None` | ✓ |
+| `openNovo` | `` | `None` |  |
+| `openEditar` | `t: Tutor` | `None` |  |
+| `handleSubmit` | `e: React.FormEvent` | `None` | ✓ |
+| ` ` | `` | `None` |  |
+| `e` | `` | `None` |  |
+| `{` | `` | `None` |  |
+| `e` | `` | `None` |  |
+| `{` | `` | `None` |  |
+| `e` | `` | `None` |  |
+| `{` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `VacinasPage` | `` | `None` |  |
+| `load` | `` | `None` | ✓ |
+| `f` | `` | `None` |  |
+| `f` | `` | `None` |  |
+| `nomePetComTutor` | `idPet: number` | `None` |  |
+| `p` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| `ndleRegistrar(e` | ` React.FormEvent) ` | `None` | ✓ |
+| `=` | `` | `None` |  |
+| `ndleAplicar(e` | ` React.FormEvent) ` | `None` | ✓ |
+| `=` | `` | `None` |  |
+| `=` | `` | `None` |  |
+| `=` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `R` | `` | `None` |  |
+| `.` | `` | `None` |  |
+| `F` | `` | `None` |  |
+| `.` | `` | `None` |  |
+| `r` | `` | `None` |  |
+| `,` | `` | `None` |  |
+| `m` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+
+### `layout.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `ut({ child` | `en }: { children: React.ReactNode }) {
+  re` | `None` |  |
+
+### `page.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `LoginPage` | `` | `None` |  |
+| `changeTab` | `t: Tab` | `None` |  |
+| `handleLogin` | `e: React.FormEvent` | `None` | ✓ |
+| `handleCadastro` | `e: React.FormEvent` | `None` | ✓ |
+| `dleReset(e:` | `React.FormEvent) {` | `None` | ✓ |
+| `l` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `m` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `{` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `i` | `` | `None` |  |
+| `b` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `t` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `=` | `` | `None` |  |
+| `p` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `n` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `i` | `` | `None` |  |
+| ` ` | `` | `None` |  |
+| `  <di` | ` className="flex flex-col gap-1">
+      <label className="text-sm font-medium text-gr` | `None` |  |
+| `n
+      type` | `"submit"
+      disabled={loading}
+      className="w-full bg-primary h` | `None` |  |
+
+### `Header.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `r() {
+` | `` | `None` |  |
+
+### `Sidebar.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `w-64 bg` | `` | `None` |  |
+| `    ` | `` | `None` |  |
+
+### `Alert.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `varia` | `t, message, onClose }: AlertProps) {
+  co` | `None` |  |
+
+### `Badge.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `Badge` | `{ variant = 'gray', children, className = '' }: BadgeProps` | `None` |  |
+| `statusBadge` | `status: string` | `None` |  |
+
+### `Button.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `Button` | `{
+  variant = 'primary', size = 'md', loading,
+  children, className = '', disabled, ...props
+}: ButtonProps` | `None` |  |
+
+### `Input.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `Input` | `{ label, error, className = '', id, ...props }: InputProps` | `None` |  |
+
+### `Modal.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `Modal` | `{ open, title, onClose, children, size = 'md' }: ModalProps` | `None` |  |
+
+### `Select.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `Select` | `{ label, error, options, placeholder, className = '', id, ...props }: SelectProps` | `None` |  |
+| `opt` | `` | `None` |  |
+
+### `Spinner.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `Spinner` | `{ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }` | `None` |  |
+| `PageSpinner` | `` | `None` |  |
+
+### `AuthContext.tsx`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `AuthProvider` | `{ children }: { children: ReactNode }` | `None` |  |
+| `login` | `data: AuthData` | `None` |  |
+| `logout` | `` | `None` |  |
+| `useAuth` | `` | `AuthContextType` |  |
+
+### `api.ts`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `getToken` | `` | `string | null` |  |
+| `request` | `path: string, options: RequestInit = {}` | `Promise<T>` | ✓ |
+
+### `auth.ts`
+
+| Function | Params | Returns | Async |
+|----------|--------|---------|-------|
+| `saveAuth` | `data: AuthData` | `void` |  |
+| `getAuth` | `` | `AuthData | null` |  |
+| `clearAuth` | `` | `void` |  |
+
+---
+
+## Dependencies
+
+### This module imports from:
+- `AuthContext.tsx` → `api/schemas/auth.py`
+- `page.tsx` → `api/schemas/auth.py`
+- `page.tsx` → `api/schemas/dashboard.py`
+- `page.tsx` → `api/schemas/pets.py`
+- `page.tsx` → `api/schemas/tutores.py`
+- `page.tsx` → `api/schemas/vacinas.py`
+
+---
+
+## Module Structure
+
+```mermaid
+flowchart TB
+    subgraph frontend_src["frontend/src/"]
+        frontend_src_AuthContext_tsx["AuthContext.tsx (4F)"]
+        frontend_src_api_ts["api.ts (2F)"]
+        frontend_src_auth_ts["auth.ts (3F)"]
+        frontend_src_vacinas_ts["vacinas.ts"]
+        frontend_src_auth_ts["auth.ts"]
+        frontend_src_dashboard_ts["dashboard.ts"]
+        frontend_src_tutores_ts["tutores.ts"]
+        frontend_src_pets_ts["pets.ts"]
+        frontend_src_notificacoes_ts["notificacoes.ts"]
+        frontend_src_page_tsx["page.tsx (28F)"]
+        frontend_src_layout_tsx["layout.tsx (1F)"]
+        frontend_src_index_ts["index.ts"]
+    end
+```
+
+---
+
+
+*Generated by Code-In Agent — 2026-06-07*
