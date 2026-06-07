@@ -1,0 +1,67 @@
+# b04a36a2-348b-43de-815d-17dd0efd1c2d
+
+> llms.txt — Machine-readable documentation index
+> Generated: 2026-06-07
+
+## Project Summary
+
+- Architecture: Monolithic application with a clear separation of concerns between frontend and backend. The frontend is built with Next.js (likely using the App Router), and the backend is a Python API (strongly suggesting FastAPI due to `api/deps.py`). The backend itself appears to follow a layered architecture, with `api/` handling the presentation/API layer and `backend/` containing core domain logic and models. The `pages/` directory, containing Python files, is ambiguous but likely represents specific API endpoints or controllers for 'page-like' functionalities within the Python backend, possibly serving some server-rendered content or acting as specific data endpoints for the frontend.
+- Language: Python + Next.js
+- Type: web, cli, library
+- Files: 80 | Functions: 151 | Classes: 0
+- Stack: See repomap.txt
+
+## Documentation Map
+
+| Artifact | Path | Purpose |
+|----------|------|---------|
+| Behavioral Contract | [AGENTS.md](AGENTS.md) | Rules, commands, boundaries for AI agents |
+| Repository Map | [repomap.txt](repomap.txt) | AST-compressed symbol map of entire repo |
+| Module Doc | [api/ReadMe.LLM](api/ReadMe.LLM) | Signatures + I/O for `api/` |
+| Module Rules | [api/AGENTS.md](api/AGENTS.md) | Module-specific overrides |
+| Module Doc | [api/routes/ReadMe.LLM](api/routes/ReadMe.LLM) | Signatures + I/O for `api/routes/` |
+| Module Rules | [api/routes/AGENTS.md](api/routes/AGENTS.md) | Module-specific overrides |
+| Module Doc | [api/schemas/ReadMe.LLM](api/schemas/ReadMe.LLM) | Signatures + I/O for `api/schemas/` |
+| Module Rules | [api/schemas/AGENTS.md](api/schemas/AGENTS.md) | Module-specific overrides |
+| Module Doc | [api/utils/ReadMe.LLM](api/utils/ReadMe.LLM) | Signatures + I/O for `api/utils/` |
+| Module Rules | [api/utils/AGENTS.md](api/utils/AGENTS.md) | Module-specific overrides |
+| Module Doc | [backend/ReadMe.LLM](backend/ReadMe.LLM) | Signatures + I/O for `backend/` |
+| Module Rules | [backend/AGENTS.md](backend/AGENTS.md) | Module-specific overrides |
+| Module Doc | [frontend/ReadMe.LLM](frontend/ReadMe.LLM) | Signatures + I/O for `frontend/` |
+| Module Rules | [frontend/AGENTS.md](frontend/AGENTS.md) | Module-specific overrides |
+| Module Doc | [frontend/src/ReadMe.LLM](frontend/src/ReadMe.LLM) | Signatures + I/O for `frontend/src/` |
+| Module Rules | [frontend/src/AGENTS.md](frontend/src/AGENTS.md) | Module-specific overrides |
+| Module Doc | [pages/ReadMe.LLM](pages/ReadMe.LLM) | Signatures + I/O for `pages/` |
+| Module Rules | [pages/AGENTS.md](pages/AGENTS.md) | Module-specific overrides |
+| SCIP Index | [_codein/scip_index.scip](_codein/scip_index.scip) | Compiler-precision symbol navigation |
+| TreeFrag | [_codein/treefrag.txt](_codein/treefrag.txt) | Hierarchical LOD representation |
+| Knowledge Graph | [_codein/knowledge_graph.json](_codein/knowledge_graph.json) | Enriched dependency graph |
+
+## Key Modules
+
+- `pages/`
+- `backend/`
+- `test_improvements.py/`
+- `api/`
+- `frontend/`
+- `app.py/`
+
+## Quick Reference
+
+### Entry Points
+- `test_improvements.py`
+- `app.py`
+- `pages/_notificacoes.py`
+- `pages/cadastro_pet.py`
+- `pages/cadastro_tutor.py`
+- `pages/home.py`
+- `pages/historico.py`
+- `pages/cadastrar_usuario.py`
+
+### Build Commands
+```
+npm run dev  # dev
+npm run build  # build
+npm run start  # start
+npm run lint  # lint
+```
