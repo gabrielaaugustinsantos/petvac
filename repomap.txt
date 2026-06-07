@@ -1,0 +1,295 @@
+# repomap.txt — b04a36a2-348b-43de-815d-17dd0efd1c2d
+# AST-compressed repository map (symbols only, no bodies)
+# Generated: 2026-06-07
+# Language: Python
+#
+
+# Stats: 80 files, 107 functions, 0 classes
+#
+
+├── app.py  (204L)
+├── test_improvements.py  (158L)
+
+api/
+  ├── __init__.py  (1L)
+  ├── auth_utils.py  (23L)
+  ├── config.py  (15L)
+  ├── deps.py  (17L)
+  ├── main.py  (45L)
+
+api/routes/
+  ├── __init__.py  (1L)
+  ├── auth.py  (69L)
+  ├── dashboard.py  (34L)
+  ├── notificacoes.py  (48L)
+  ├── pets.py  (78L)
+  ├── tutores.py  (76L)
+  ├── vacinas.py  (78L)
+
+api/schemas/
+  ├── __init__.py  (28L)
+  ├── auth.py  (27L)
+  ├── common.py  (8L)
+  ├── dashboard.py  (10L)
+  ├── notificacoes.py  (11L)
+  ├── pets.py  (28L)
+  ├── tutores.py  (25L)
+  ├── vacinas.py  (40L)
+
+api/utils/
+  ├── __init__.py  (1L)
+  ├── helpers.py  (44L)
+
+backend/
+  ├── __init__.py  (1L)
+  ├── config.py  (37L)
+  ├── database.py  (38L)
+  ├── design_system.py  (388L)
+  ├── enums.py  (29L)
+  ├── historico_vacinas.py  (13L)
+  ├── logger.py  (61L)
+  ├── notificacao.py  (27L)
+  ├── pet.py  (15L)
+  ├── security.py  (37L)
+  ├── services.py  (608L)
+  ├── tutor.py  (14L)
+  ├── usuario.py  (21L)
+  ├── utils.py  (158L)
+  ├── vacina.py  (8L)
+  ├── validators.py  (140L)
+
+frontend/
+  ├── next-env.d.ts  (6L)
+  ├── next.config.mjs  (14L)
+  │   async def rewrites()
+  │   exports: nextConfig
+  ├── postcss.config.js  (7L)
+  ├── tailwind.config.ts  (25L)
+  │   exports: config
+
+frontend/src/app/
+  ├── layout.tsx  (19L)
+  │   def ut({ child(en }: { children: React.ReactNode }) {
+  re)
+  ├── page.tsx  (295L)
+  │   def LoginPage()
+  │   def changeTab(t: Tab)
+  │   async def handleLogin(e: React.FormEvent)
+  │   async def handleCadastro(e: React.FormEvent)
+  │   async def dleReset(e:(React.FormEvent) {)
+  │   def l()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+  │   def m()
+  │   def  ()
+  │   def {()
+  │   def  ()
+  │   def i()
+  │   def b()
+  │   def  ()
+  │   def t()
+  │   def  ()
+  │   def =()
+  │   def p()
+  │   def  ()
+  │   def n()
+  │   def  ()
+  │   def i()
+  │   def  ()
+  │   def   <di( className="flex flex-col gap-1">
+      <label className="text-sm font-medium text-gr)
+  │   def n
+      type("submit"
+      disabled={loading}
+      className="w-full bg-primary h)
+
+frontend/src/app/(dashboard)/
+  ├── layout.tsx  (59L)
+  │   def DashboardLayout({ children }: { children: React.ReactNode })
+
+frontend/src/app/(dashboard)/dashboard/
+  ├── page.tsx  (111L)
+  │   def MetricCard({ label, value, icon, accent }: { label: string; value: number; icon: string; accent: string })
+  │   def DashboardPage()
+  │   def err()
+  │   def  ()
+
+frontend/src/app/(dashboard)/historico/
+  ├── page.tsx  (184L)
+  │   def HistoricoPage()
+  │   def e()
+  │   def nomeTutor(idTutor: number)
+  │   def t()
+  │   async def nsultar()()
+  │   def >()
+  │   def  ()
+  │   def .()
+  │   def s()
+  │   def e()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+
+frontend/src/app/(dashboard)/notificacoes/
+  ├── page.tsx  (325L)
+  │   def > 0 ? `Venci(a há ${di) -> s} dia${dias !== 1 ? 's' : ''}` : 'Vencida
+  │   def (${diasInfo}(. Por favor,, ntre em contato, ara agendar a apli, ção. Obrigado! —) -> PetVac 🐾
+  │   def  setSuccess]    ()
+  │   async def ad()()
+  │   def Aplicacao })
+ (    setSuccess(')
+  │   def ? e.message : 'Er()
+  │   async def // ── Cards enriqu(cidos ──────────)
+  │   def .()
+  │   def a()
+  │   def :()
+  │   def :()
+  │   def '()
+  │   def a()
+  │   def &()
+  │   def u()
+  │   def f()
+  │   def  ()
+
+frontend/src/app/(dashboard)/pets/
+  ├── page.tsx  (158L)
+  │   def PetsPage()
+  │   async def load()
+  │   def nomeTutor(id: number)
+  │   def t()
+  │   def openNovo()
+  │   def openEditar(p: Pet)
+  │   async def handleSubmit(e: React.FormEvent)
+  │   def e()
+  │   def t()
+  │   def (()
+  │   def s()
+  │   def (()
+  │   def e()
+  │   def {()
+  │   def t()
+  │   def  ()
+  │   def t()
+  │   def  ()
+  │   def t()
+  │   def  ()
+
+frontend/src/app/(dashboard)/tutores/
+  ├── page.tsx  (134L)
+  │   def TutoresPage()
+  │   async def load()
+  │   def openNovo()
+  │   def openEditar(t: Tutor)
+  │   async def handleSubmit(e: React.FormEvent)
+  │   def  ()
+  │   def e()
+  │   def {()
+  │   def e()
+  │   def {()
+  │   def e()
+  │   def {()
+  │   def t()
+  │   def  ()
+
+frontend/src/app/(dashboard)/vacinas/
+  ├── page.tsx  (201L)
+  │   def VacinasPage()
+  │   async def load()
+  │   def f()
+  │   def f()
+  │   def nomePetComTutor(idPet: number)
+  │   def p()
+  │   def t()
+  │   async def ndleRegistrar(e( React.FormEvent) )
+  │   def =()
+  │   async def ndleAplicar(e( React.FormEvent) )
+  │   def =()
+  │   def =()
+  │   def =()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+  │   def  ()
+  │   def t()
+  │   def  ()
+  │   def R()
+  │   def .()
+  │   def F()
+  │   def .()
+  │   def r()
+  │   def ,()
+  │   def m()
+  │   def  ()
+  │   def  ()
+
+frontend/src/components/layout/
+  ├── Header.tsx  (47L)
+  │   def r() {
+()
+  ├── Sidebar.tsx  (84L)
+  │   def w-64 bg()
+  │   def     ()
+
+frontend/src/components/ui/
+  ├── Alert.tsx  (29L)
+  │   def varia(t, message, onClose }: AlertProps) {
+  co)
+  ├── Badge.tsx  (32L)
+  │   def Badge({ variant = 'gray', children, className = '' }: BadgeProps)
+  │   def statusBadge(status: string)
+  ├── Button.tsx  (49L)
+  │   def Button({
+  variant = 'primary', size = 'md', loading,
+  children, className = '', disabled, ...props
+}: ButtonProps)
+  ├── Input.tsx  (31L)
+  │   def Input({ label, error, className = '', id, ...props }: InputProps)
+  ├── Modal.tsx  (42L)
+  │   def Modal({ open, title, onClose, children, size = 'md' }: ModalProps)
+  ├── Select.tsx  (45L)
+  │   def Select({ label, error, options, placeholder, className = '', id, ...props }: SelectProps)
+  │   def opt()
+  ├── Spinner.tsx  (19L)
+  │   def Spinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
+  │   def PageSpinner()
+
+frontend/src/contexts/
+  ├── AuthContext.tsx  (51L)
+  │   def AuthProvider({ children }: { children: ReactNode })
+  │   def login(data: AuthData)
+  │   def logout()
+  │   def useAuth() -> AuthContextType
+
+frontend/src/lib/
+  ├── api.ts  (40L)
+  │   def getToken() -> string | null
+  │   async def request(path: string, options: RequestInit = {}) -> Promise<T>
+  ├── auth.ts  (22L)
+  │   def saveAuth(data: AuthData) -> void
+  │   def getAuth() -> AuthData | null
+  │   def clearAuth() -> void
+
+frontend/src/services/
+  ├── auth.ts  (16L)
+  ├── dashboard.ts  (7L)
+  ├── notificacoes.ts  (11L)
+  ├── pets.ts  (19L)
+  ├── tutores.ts  (18L)
+  ├── vacinas.ts  (25L)
+
+frontend/src/types/
+  ├── index.ts  (71L)
+
+pages/
+  ├── _notificacoes.py  (182L)
+  ├── cadastrar_usuario.py  (21L)
+  ├── cadastro_pet.py  (167L)
+  ├── cadastro_tutor.py  (161L)
+  ├── historico.py  (136L)
+  ├── home.py  (230L)
+  ├── style.py  (258L)
+  ├── vacinas.py  (206L)
