@@ -87,9 +87,9 @@ export default function PetsPage() {
         <Alert variant="warning" message="Cadastre um tutor antes de registrar pets." />
       )}
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-gray-500">{pets.length} pet(s) cadastrado(s)</p>
-        <Button onClick={openNovo} disabled={tutores.length === 0}>+ Novo Pet</Button>
+        <Button onClick={openNovo} size="sm" disabled={tutores.length === 0}>+ Novo Pet</Button>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -103,25 +103,25 @@ export default function PetsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
-                  <th className="px-5 py-3">ID</th>
-                  <th className="px-5 py-3">Nome</th>
-                  <th className="px-5 py-3">Espécie</th>
-                  <th className="px-5 py-3">Raça</th>
-                  <th className="px-5 py-3">Nascimento</th>
-                  <th className="px-5 py-3">Tutor</th>
-                  <th className="px-5 py-3" />
+                  <th className="px-4 py-3 hidden sm:table-cell">ID</th>
+                  <th className="px-4 py-3">Nome</th>
+                  <th className="px-4 py-3">Espécie</th>
+                  <th className="px-4 py-3 hidden md:table-cell">Raça</th>
+                  <th className="px-4 py-3 hidden lg:table-cell">Nascimento</th>
+                  <th className="px-4 py-3 hidden sm:table-cell">Tutor</th>
+                  <th className="px-4 py-3" />
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {pets.map(p => (
                   <tr key={p.idPet} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-5 py-3 font-mono text-gray-400">#{p.idPet}</td>
-                    <td className="px-5 py-3 font-medium">{p.nome}</td>
-                    <td className="px-5 py-3">{p.especie}</td>
-                    <td className="px-5 py-3 text-gray-600">{p.raca}</td>
-                    <td className="px-5 py-3 text-gray-600">{p.dataNascimento}</td>
-                    <td className="px-5 py-3 text-gray-600">{nomeTutor(p.idTutor)}</td>
-                    <td className="px-5 py-3">
+                    <td className="px-4 py-3 font-mono text-gray-400 hidden sm:table-cell">#{p.idPet}</td>
+                    <td className="px-4 py-3 font-medium">{p.nome}</td>
+                    <td className="px-4 py-3">{p.especie}</td>
+                    <td className="px-4 py-3 text-gray-600 hidden md:table-cell">{p.raca}</td>
+                    <td className="px-4 py-3 text-gray-600 hidden lg:table-cell">{p.dataNascimento}</td>
+                    <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">{nomeTutor(p.idTutor)}</td>
+                    <td className="px-4 py-3">
                       <Button variant="ghost" size="sm" onClick={() => openEditar(p)}>Editar</Button>
                     </td>
                   </tr>

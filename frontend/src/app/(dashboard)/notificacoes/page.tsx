@@ -260,30 +260,32 @@ export default function NotificacoesPage() {
                     <p className="text-sm font-medium text-gray-700 mb-3">
                       💉 Data de aplicação de <strong>{card.vacina.nome}</strong>:
                     </p>
-                    <div className="flex items-center gap-3 flex-wrap">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                       <input
                         type="date"
                         value={dataAplicacao}
                         onChange={e => setDataAplicacao(e.target.value)}
-                        className="border border-gray-300 rounded-lg px-3 py-2 text-sm
+                        className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full sm:w-auto
                                    focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                       />
-                      <button
-                        onClick={() => confirmarAplicacao(vacinaId)}
-                        disabled={!dataAplicacao || salvando}
-                        className="px-4 py-2 text-sm font-semibold bg-primary text-white
-                                   rounded-lg hover:bg-primary-dark transition-colors
-                                   disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {salvando ? '⏳ Salvando...' : '✓ Confirmar'}
-                      </button>
-                      <button
-                        onClick={cancelarAplicacao}
-                        className="px-4 py-2 text-sm font-medium text-gray-600
-                                   border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
-                      >
-                        Cancelar
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => confirmarAplicacao(vacinaId)}
+                          disabled={!dataAplicacao || salvando}
+                          className="flex-1 sm:flex-none px-4 py-2 text-sm font-semibold bg-primary text-white
+                                     rounded-lg hover:bg-primary-dark transition-colors
+                                     disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {salvando ? '⏳ Salvando...' : '✓ Confirmar'}
+                        </button>
+                        <button
+                          onClick={cancelarAplicacao}
+                          className="flex-1 sm:flex-none px-4 py-2 text-sm font-medium text-gray-600
+                                     border border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}

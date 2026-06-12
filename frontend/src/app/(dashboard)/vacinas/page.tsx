@@ -170,11 +170,11 @@ export default function VacinasPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
-                  <th className="px-5 py-3">ID</th>
-                  <th className="px-5 py-3">Pet</th>
-                  <th className="px-5 py-3">Vacina</th>
-                  <th className="px-5 py-3">Próxima Dose</th>
-                  <th className="px-5 py-3">Status</th>
+                  <th className="px-4 py-3 hidden sm:table-cell">ID</th>
+                  <th className="px-4 py-3 hidden md:table-cell">Pet</th>
+                  <th className="px-4 py-3">Vacina</th>
+                  <th className="px-4 py-3 hidden sm:table-cell">Próxima Dose</th>
+                  <th className="px-4 py-3">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -182,11 +182,11 @@ export default function VacinasPage() {
                   const badge = statusBadge(v.status, v.atrasada)
                   return (
                     <tr key={v.idVacina} className="hover:bg-gray-50">
-                      <td className="px-5 py-3 font-mono text-gray-400">#{v.idVacina}</td>
-                      <td className="px-5 py-3">{nomePetComTutor(v.idPet)}</td>
-                      <td className="px-5 py-3 font-medium">{v.nome}</td>
-                      <td className="px-5 py-3 text-gray-600">{v.dataProximaDose || '—'}</td>
-                      <td className="px-5 py-3"><Badge variant={badge.variant}>{badge.label}</Badge></td>
+                      <td className="px-4 py-3 font-mono text-gray-400 hidden sm:table-cell">#{v.idVacina}</td>
+                      <td className="px-4 py-3 hidden md:table-cell">{nomePetComTutor(v.idPet)}</td>
+                      <td className="px-4 py-3 font-medium">{v.nome}</td>
+                      <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">{v.dataProximaDose || '—'}</td>
+                      <td className="px-4 py-3"><Badge variant={badge.variant}>{badge.label}</Badge></td>
                     </tr>
                   )
                 })}

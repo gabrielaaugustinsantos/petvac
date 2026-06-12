@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import { Spinner } from '@/components/ui/Spinner'
 
-// Rotas permitidas por cargo
 const ROTAS_POR_CARGO: Record<string, string[]> = {
   recepcionista: ['/dashboard', '/tutores', '/pets', '/notificacoes'],
   veterinario:   ['/dashboard', '/vacinas', '/historico', '/notificacoes'],
@@ -18,20 +17,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const router   = useRouter()
   const pathname = usePathname()
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  // Fecha o sidebar ao mudar de rota (navegação mobile)
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [pathname])
+
   useEffect(() => {
     if (isLoading) return
-
-    // Sem sessão → login
-    if (!user) {
-      router.push('/')
-      return
-    }
-
-    // Rota não permitida para o cargo → redireciona ao dashboard
+    if (!user) { router.push('/'); return }
     const permitidas = ROTAS_POR_CARGO[user.cargo] ?? ['/dashboard']
-    if (!permitidas.includes(pathname)) {
-      router.push('/dashboard')
-    }
+    if (!permitidas.includes(pathname)) router.push('/dashboard')
   }, [user, isLoading, pathname, router])
 
   if (isLoading) {
@@ -46,10 +43,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
-      <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
-        <main className="flex-1 overflow-y-auto p-6">
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
+        <main className="flex-1 overflow-y-auto p-4 md:p-6">
           {children}
         </main>
       </div>

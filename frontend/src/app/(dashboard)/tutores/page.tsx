@@ -67,9 +67,9 @@ export default function TutoresPage() {
       {error   && <Alert variant="error"   message={error}   onClose={() => setError(null)}   />}
       {success && <Alert variant="success" message={success} onClose={() => setSuccess(null)} />}
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-gray-500">{tutores.length} tutor(es) cadastrado(s)</p>
-        <Button onClick={openNovo}>+ Novo Tutor</Button>
+        <Button onClick={openNovo} size="sm">+ Novo Tutor</Button>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -83,23 +83,23 @@ export default function TutoresPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
-                  <th className="px-5 py-3">ID</th>
-                  <th className="px-5 py-3">Nome</th>
-                  <th className="px-5 py-3">Telefone</th>
-                  <th className="px-5 py-3">E-mail</th>
-                  <th className="px-5 py-3">Endereço</th>
-                  <th className="px-5 py-3" />
+                  <th className="px-4 py-3 hidden sm:table-cell">ID</th>
+                  <th className="px-4 py-3">Nome</th>
+                  <th className="px-4 py-3">Telefone</th>
+                  <th className="px-4 py-3 hidden md:table-cell">E-mail</th>
+                  <th className="px-4 py-3 hidden lg:table-cell">Endereço</th>
+                  <th className="px-4 py-3" />
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {tutores.map(t => (
                   <tr key={t.idTutor} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-5 py-3 font-mono text-gray-400">#{t.idTutor}</td>
-                    <td className="px-5 py-3 font-medium">{t.nome}</td>
-                    <td className="px-5 py-3 text-gray-600">{t.telefone}</td>
-                    <td className="px-5 py-3 text-gray-600">{t.email}</td>
-                    <td className="px-5 py-3 text-gray-600 truncate max-w-[160px]">{t.endereco || '—'}</td>
-                    <td className="px-5 py-3">
+                    <td className="px-4 py-3 font-mono text-gray-400 hidden sm:table-cell">#{t.idTutor}</td>
+                    <td className="px-4 py-3 font-medium">{t.nome}</td>
+                    <td className="px-4 py-3 text-gray-600">{t.telefone}</td>
+                    <td className="px-4 py-3 text-gray-600 hidden md:table-cell">{t.email}</td>
+                    <td className="px-4 py-3 text-gray-600 truncate max-w-[160px] hidden lg:table-cell">{t.endereco || '—'}</td>
+                    <td className="px-4 py-3">
                       <Button variant="ghost" size="sm" onClick={() => openEditar(t)}>Editar</Button>
                     </td>
                   </tr>

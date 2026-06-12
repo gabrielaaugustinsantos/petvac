@@ -77,7 +77,7 @@ export default function HistoricoPage() {
         <>
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 mb-4">Selecione um Pet</h3>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <div className="flex-1">
                 <Select
                   options={petOptions}
@@ -85,7 +85,7 @@ export default function HistoricoPage() {
                   onChange={e => { setSelectedPet(e.target.value); setHistorico(null) }}
                 />
               </div>
-              <Button onClick={consultar} loading={searching}>Consultar</Button>
+              <Button onClick={consultar} loading={searching} className="sm:shrink-0">Consultar</Button>
             </div>
           </div>
 
@@ -122,11 +122,11 @@ export default function HistoricoPage() {
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
-                          <th className="px-5 py-3">ID</th>
-                          <th className="px-5 py-3">Vacina</th>
-                          <th className="px-5 py-3">Aplicada em</th>
-                          <th className="px-5 py-3">Próxima Dose</th>
-                          <th className="px-5 py-3">Status</th>
+                          <th className="px-4 py-3 hidden sm:table-cell">ID</th>
+                          <th className="px-4 py-3">Vacina</th>
+                          <th className="px-4 py-3 hidden sm:table-cell">Aplicada em</th>
+                          <th className="px-4 py-3 hidden md:table-cell">Próxima Dose</th>
+                          <th className="px-4 py-3">Status</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-100">
@@ -134,11 +134,11 @@ export default function HistoricoPage() {
                           const badge = statusBadge(v.status, v.atrasada)
                           return (
                             <tr key={v.idVacina} className="hover:bg-gray-50">
-                              <td className="px-5 py-3 font-mono text-gray-400">#{v.idVacina}</td>
-                              <td className="px-5 py-3 font-medium">{v.nome}</td>
-                              <td className="px-5 py-3 text-gray-600">{v.dataAplicacao || '—'}</td>
-                              <td className="px-5 py-3 text-gray-600">{v.dataProximaDose || '—'}</td>
-                              <td className="px-5 py-3"><Badge variant={badge.variant}>{badge.label}</Badge></td>
+                              <td className="px-4 py-3 font-mono text-gray-400 hidden sm:table-cell">#{v.idVacina}</td>
+                              <td className="px-4 py-3 font-medium">{v.nome}</td>
+                              <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">{v.dataAplicacao || '—'}</td>
+                              <td className="px-4 py-3 text-gray-600 hidden md:table-cell">{v.dataProximaDose || '—'}</td>
+                              <td className="px-4 py-3"><Badge variant={badge.variant}>{badge.label}</Badge></td>
                             </tr>
                           )
                         })}

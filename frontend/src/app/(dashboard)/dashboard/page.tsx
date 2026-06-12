@@ -68,10 +68,10 @@ export default function DashboardPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 text-left text-gray-500 text-xs uppercase tracking-wide">
-                  <th className="px-6 py-3">ID Pet</th>
-                  <th className="px-6 py-3">Vacina</th>
-                  <th className="px-6 py-3">Próxima Dose</th>
-                  <th className="px-6 py-3">Status</th>
+                  <th className="px-4 md:px-6 py-3 hidden sm:table-cell">ID Pet</th>
+                  <th className="px-4 md:px-6 py-3">Vacina</th>
+                  <th className="px-4 md:px-6 py-3 hidden sm:table-cell">Próxima Dose</th>
+                  <th className="px-4 md:px-6 py-3">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -79,10 +79,10 @@ export default function DashboardPage() {
                   const badge = statusBadge(v.status, v.atrasada)
                   return (
                     <tr key={v.idVacina} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-3 font-mono text-gray-500">#{v.idPet}</td>
-                      <td className="px-6 py-3 font-medium">{v.nome}</td>
-                      <td className="px-6 py-3 text-gray-600">{v.dataProximaDose || '—'}</td>
-                      <td className="px-6 py-3">
+                      <td className="px-4 md:px-6 py-3 font-mono text-gray-500 hidden sm:table-cell">#{v.idPet}</td>
+                      <td className="px-4 md:px-6 py-3 font-medium">{v.nome}</td>
+                      <td className="px-4 md:px-6 py-3 text-gray-600 hidden sm:table-cell">{v.dataProximaDose || '—'}</td>
+                      <td className="px-4 md:px-6 py-3">
                         <Badge variant={badge.variant}>{badge.label}</Badge>
                       </td>
                     </tr>
